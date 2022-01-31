@@ -86,8 +86,11 @@ def suora(rivi: list):
         rivi[indeksi][1] = 14
     pienin = min(rivi, key=lambda kortti: kortti[1])
     suurin = max(rivi, key=lambda kortti: kortti[1])
-    
-    if pienin[1]+5 == suurin[1]:
+
+    numerot = [kortti[1] for kortti in rivi]
+    numerot = list(dict.fromkeys(numerot))
+
+    if pienin[1]+4 == suurin[1] and len(numerot) == 5:
         suora = True
     if kymppi and assa:
         rivi[indeksi][1] = 1
@@ -139,4 +142,4 @@ def pokerivoitto(rivi: list):
         return "ei voittoa", -1
 
 if __name__ == "__main__":
-    print(pokerivoitto([["pata", 6 ],["pata", 5],["pata", 6],["pata", 8],["risti", 9] ]))
+    print(pokerivoitto([["pata", 5 ],["pata", 5],["pata", 7],["pata", 8],["risti", 9] ]))

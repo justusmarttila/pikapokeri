@@ -93,35 +93,57 @@ class Pikapokeri:
         tuplaa_teksti = self.fontti.render("TUPLAA", True, (0, 0, 0))
         voitot_teksti = self.fontti.render("VOITOT", True, (0, 0, 0))
         talteen_teksti = self.fontti.render("TALTEEN", True, (0, 0, 0))
+        
+        for i in range(7):
+            self.naytto.blit(self.kortti, (200+3*i, 70+3*i))
+        self.naytto.blit(self.voitto_taulukko, (self.leveys_ruutu-960, self.korkeus_ruutu-900))
+        
+        if self.panos == 0.50:
+            viiva_1_x, viiva_2_x = self.leveys_ruutu-730, self.leveys_ruutu-660
+        elif self.panos == 1:
+            viiva_1_x, viiva_2_x = self.leveys_ruutu-660, self.leveys_ruutu-580
+        elif self.panos == 2:
+            viiva_1_x, viiva_2_x = self.leveys_ruutu-580, self.leveys_ruutu-520
+        elif self.panos == 3:
+            viiva_1_x, viiva_2_x = self.leveys_ruutu-520, self.leveys_ruutu-450
+        else: 
+            viiva_1_x, viiva_2_x = self.leveys_ruutu-450, self.leveys_ruutu-380
+
+        pygame.draw.line(self.naytto, (255, 255, 255), (viiva_1_x, (self.korkeus_ruutu-900)+self.voitto_taulukko.get_height()), (viiva_1_x, self.korkeus_ruutu-900), 3)
+        pygame.draw.line(self.naytto, (255, 255, 255), (viiva_2_x, (self.korkeus_ruutu-900)+self.voitto_taulukko.get_height()), (viiva_2_x, self.korkeus_ruutu-900), 3)
+
         if self.voitto:
             pygame.draw.rect(self.naytto, (255, 150, 50), (self.tuplaus_nappi_x, self.tuplaus_nappi_y, 200, 100), 0, 25)
             pygame.draw.rect(self.naytto, (255, 0, 0), (self.voitot_talteen_x, self.voitot_talteen_y, 200, 100), 0, 25 )
             self.naytto.blit(tuplaa_teksti, (self.leveys_ruutu-1260, self.korkeus_ruutu-113))
             self.naytto.blit(voitot_teksti, (self.leveys_ruutu-1010, self.korkeus_ruutu-128))
             self.naytto.blit(talteen_teksti, (self.leveys_ruutu-1015, self.korkeus_ruutu-95))
+            ero = 27
+            alku = 612
+            if self.voiton_nimi == "Viitoset":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+10*ero), self.korkeus_ruutu-(alku+9*ero)
+            elif self.voiton_nimi == "Kuningasvärisuora":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+9*ero), self.korkeus_ruutu-(alku+8*ero)
+            elif self.voiton_nimi == "Värisuora":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+8*ero), self.korkeus_ruutu-(alku+7*ero)
+            elif self.voiton_nimi == "Neloset":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+7*ero), self.korkeus_ruutu-(alku+6*ero)
+            elif self.voiton_nimi == "Täyskäsi":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+6*ero), self.korkeus_ruutu-(alku+5*ero)
+            elif self.voiton_nimi == "Väri":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+5*ero), self.korkeus_ruutu-(alku+4*ero)
+            elif self.voiton_nimi == "Suora":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+4*ero), self.korkeus_ruutu-(alku+3*ero)
+            elif self.voiton_nimi == "Kolmoset":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+3*ero), self.korkeus_ruutu-(alku+2*ero)
+            elif self.voiton_nimi == "Kaksi paria":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+2*ero), self.korkeus_ruutu-(alku+ero)
+            elif self.voiton_nimi == "10-A Pari":
+                voitto_viiva_1_y, voitto_viiva_2_y = self.korkeus_ruutu-(alku+ero), self.korkeus_ruutu-alku
 
-        for i in range(7):
-            self.naytto.blit(self.kortti, (200+3*i, 70+3*i))
-        self.naytto.blit(self.voitto_taulukko, (self.leveys_ruutu-960, self.korkeus_ruutu-900))
-        
-        if self.panos == 0.50:
-            viiva_1_x = self.leveys_ruutu-730
-            viiva_2_x = self.leveys_ruutu-660
-        elif self.panos == 1:
-            viiva_1_x = self.leveys_ruutu-660
-            viiva_2_x = self.leveys_ruutu-580
-        elif self.panos == 2:
-            viiva_1_x = self.leveys_ruutu-580
-            viiva_2_x = self.leveys_ruutu-520
-        elif self.panos == 3:
-            viiva_1_x = self.leveys_ruutu-520
-            viiva_2_x = self.leveys_ruutu-450
-        else: 
-            viiva_1_x = self.leveys_ruutu-450
-            viiva_2_x = self.leveys_ruutu-380
-        pygame.draw.line(self.naytto, (255, 255, 255), (viiva_1_x, (self.korkeus_ruutu-900)+self.voitto_taulukko.get_height()), (viiva_1_x, self.korkeus_ruutu-900), 3)
-        pygame.draw.line(self.naytto, (255, 255, 255), (viiva_2_x, (self.korkeus_ruutu-900)+self.voitto_taulukko.get_height()), (viiva_2_x, self.korkeus_ruutu-900), 3)
-            
+            pygame.draw.line(self.naytto, (255, 0, 0), (viiva_1_x, voitto_viiva_1_y), (viiva_2_x, voitto_viiva_1_y), 3)
+            pygame.draw.line(self.naytto, (255, 0, 0), (viiva_1_x, voitto_viiva_2_y), (viiva_2_x, voitto_viiva_2_y), 3)
+
     def paa_silmukka(self):
         while True:
             self.tarkista_tapahtumat()
@@ -138,7 +160,7 @@ class Pikapokeri:
                             self.vasen_valinta = True
                         elif self.paikat[3][0] <= hiiri_x <= self.paikat[3][0]+self.kortti.get_width() and self.paikat[3][1] <= hiiri_y <= self.paikat[3][1]+self.kortti.get_height():
                             self.oikea_valinta = True
-                    if (self.pelaa_nappi_x <= hiiri_x <= self.pelaa_nappi_x+200 and self.pelaa_nappi_y <= hiiri_y <= self.pelaa_nappi_y+100) and (self.tarkista_voitto or self.alku) and not (self.normi_jako or self.normi_peli) and not (self.voitto):
+                    if (self.pelaa_nappi_x <= hiiri_x <= self.pelaa_nappi_x+200 and self.pelaa_nappi_y <= hiiri_y <= self.pelaa_nappi_y+100) and (self.tarkista_voitto or self.alku) and not (self.normi_jako or self.normi_peli) and not (self.voitto) and (self.saldo>=self.panos):
                         if self.alku:
                             self.alku = False
                             self.normi_jako = True

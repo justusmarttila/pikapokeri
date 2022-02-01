@@ -111,6 +111,7 @@ class Pikapokeri:
                     if self.voitto:
                         if self.voitot_talteen_x <= hiiri_x <= self.voitot_talteen_x+200 and self.voitot_talteen_y <= hiiri_y <= self.voitot_talteen_y+100:
                             self.voitto = False
+                            self.tuplaus_voitto = False
                             self.alku = True
                             if not self.tuplattiin:
                                 self.voitto_maara = self.panos*self.voitto_kerroin

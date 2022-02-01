@@ -49,10 +49,9 @@ def napit(self):
     self.talteen_teksti = self.fontti.render("TALTEEN", True, (0, 0, 0))
 
 def voitto(self):
-    if self.tuplaus or self.tuplaus_jako_valmis or self.tuplaus_valittu:
+    if self.tuplaus_valittu or self.tuplaus or self.tuplaus_jako_valmis
         self.naytto.blit(self.voitto_maara_teksti, (self.leveys_ruutu-1100, self.korkeus_ruutu-190))
-        tuplaus_voitot_talteen_napit(self)
-    elif self.voitto:
+    if self.voitto or (self.tuplaus_valittu and self.tuplaus_voitto):
         tuplaus_voitot_talteen_napit(self)
         ero = 27
         alku = 612

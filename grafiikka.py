@@ -47,6 +47,7 @@ def napit(self):
     self.tuplaa_teksti = self.fontti.render("TUPLAA", True, (0, 0, 0))
     self.voitot_teksti = self.fontti.render("VOITOT", True, (0, 0, 0))
     self.talteen_teksti = self.fontti.render("TALTEEN", True, (0, 0, 0))
+    self.mika_voitto = self.fontti.render(self.voiton_nimi, True, (0, 0, 0))
 
 def voitto(self):
     if self.tuplaus_valittu or self.tuplaus or self.tuplaus_jako_valmis:
@@ -78,6 +79,7 @@ def voitto(self):
 
         pygame.draw.line(self.naytto, (255, 0, 0), (self.viiva_1_x, voitto_viiva_1_y), (self.viiva_2_x, voitto_viiva_1_y), 3)
         pygame.draw.line(self.naytto, (255, 0, 0), (self.viiva_1_x, voitto_viiva_2_y), (self.viiva_2_x, voitto_viiva_2_y), 3)
+        self.naytto.blit(self.mika_voitto, (self.leveys_ruutu-1090, self.korkeus_ruutu-590))
 
 
 def pakka_ja_kortti_paikat(self):

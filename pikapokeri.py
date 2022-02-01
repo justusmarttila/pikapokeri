@@ -19,7 +19,7 @@ class Pikapokeri:
 
         #globaalit muuttujat
         self.panos = 0.50
-        self.saldo = 20
+        self.saldo = 1000
         self.voitto_maara = 0
         self.nopeus = 20
         self.voitto_kerroin = 0
@@ -98,7 +98,7 @@ class Pikapokeri:
                         if self.saldo-self.panos>=0:
                             self.saldo -= self.panos
 
-                    if self.panos_nappi_x <= hiiri_x <= self.panos_nappi_x+200 and self.panos_nappi_y <= hiiri_y <= self.panos_nappi_y+100 and (not self.normi_peli) and (not self.normi_jako) and (not self.voitto):
+                    if self.panos_nappi_x <= hiiri_x <= self.panos_nappi_x+200 and self.panos_nappi_y <= hiiri_y <= self.panos_nappi_y+100 and (not self.normi_peli) and (not self.normi_jako) and (not self.voitto) and (not self.tuplaus) and (not self.tuplaus_jako_valmis) and (not self.tuplaus_valittu):
                         if self.panos == 0.50:
                             self.panos = 1
                         elif self.panos<3:

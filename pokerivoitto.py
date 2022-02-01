@@ -46,7 +46,11 @@ def varisuora(rivi: list):
   
     pienin = min(rivi, key=lambda kortti: kortti[1])
     suurin = max(rivi, key=lambda kortti: kortti[1])
-    if pienin[1]+4 == suurin[1] and maat_samat:
+
+    numerot = [kortti[1] for kortti in rivi]
+    numerot = list(dict.fromkeys(numerot))
+
+    if pienin[1]+4 == suurin[1] and maat_samat and len(numerot) == 5:
         return True
     return False
 
